@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
 import Navbar from './components/Navbar';
-import LoginContainer from './components/LoginContainer';
+import LoginContainer from './containers/LoginContainer';
 
 function App() {
   const [count, setCount] = useState(0)
