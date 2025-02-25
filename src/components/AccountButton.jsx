@@ -1,18 +1,13 @@
 import React from 'react';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { IconButton } from '@mui/material';
 
 const AccountButton = () => {
-
     return (
-        <button>
+        <IconButton aria-label="account-button" href="#" className="Account Button">
             <AccountCircleIcon />
-            <p>Account</p>
-            {/* <Icon src={AccountCircle}/> */}
-            {/* <svg src={AccountCircle} /> */}
-            {/* <img src={AccountCircle} className="Account Button" alt="Account button"/> */}
-        </button>
+        </IconButton>
     )
-
-}
+};
 
 export default AccountButton;

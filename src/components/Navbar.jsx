@@ -1,12 +1,13 @@
 import React from 'react';
 import AccountButton from './AccountButton';
+import MenuButton from './MenuButton';
 
 const Navbar = () => {
     const styles = {
         navbar: {
             backgroundColor: 'lightgray',
             top: 0,
-            width: '90%',
+            width: '97%',
             height: '64px',
             display: 'flex',
             alignItems: 'center',
@@ -23,6 +24,7 @@ const Navbar = () => {
 
     return (
         <div style={styles.navbar}>
+            <MenuButton />
             <h1 style={styles.h1}>Wishlister</h1>
             <AccountButton />
         </div>

@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
 import Navbar from './components/Navbar';
+import LoginContainer from './components/LoginContainer';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,6 +12,7 @@ function App() {
     <>
       <div>
         <Navbar />
+        <LoginContainer />
         <h1>This is a h1 tag</h1>
       </div>
       {/* <div>
