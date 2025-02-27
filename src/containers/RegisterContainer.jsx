@@ -1,17 +1,23 @@
 import React from 'react';
 import {useState} from 'react';
-import LoginForm from '../components/LoginForm';
+import RegisterForm from '../components/RegisterForm';
 import wishlisterLogo from '../assets/wishlisterlogo.svg';
 
-const LoginContainer = () => {
+const RegisterContainer = () => {
 
+    const [name, setName] = useState('');
+    const [dob, setDob] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     return (
         <div className="login-container">
             <img src={wishlisterLogo} alt="wishlister logo" />
-            <LoginForm
+            <RegisterForm 
+                name={name}
+                onNameChange={setName}
+                dob={dob}
+                onDobChange={setDob}
                 email={email}
                 onEmailChange={setEmail}
                 password={password}
@@ -21,4 +27,4 @@ const LoginContainer = () => {
     )
 };
 
-export default LoginContainer;
+export default RegisterContainer;
