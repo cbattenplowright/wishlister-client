@@ -1,6 +1,6 @@
 import React from 'react';
 
-const RegisterForm = ({name, onNameChange, dob, onDobChange, email, onEmailChange, password, onPasswordChange}) => {
+const RegisterForm = ({name, onNameChange, dob, onDobChange, email, onEmailChange, password, onPasswordChange, confirmPassword, onConfirmPasswordChange}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -41,9 +41,9 @@ const RegisterForm = ({name, onNameChange, dob, onDobChange, email, onEmailChang
                 />
                 <input 
                     type="password"
-                    value={password}
+                    value={confirmPassword}
                     placeholder="Confirm Password"
-                    onChange={(e) => onPasswordChange(e.target.value)}
+                    onChange={(e) => onConfirmPasswordChange(e.target.value)}
                     required
                 />
                 <button type="submit">Register</button>

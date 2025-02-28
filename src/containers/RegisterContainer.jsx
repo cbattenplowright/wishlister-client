@@ -9,6 +9,7 @@ const RegisterContainer = () => {
     const [dob, setDob] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
 
     return (
         <div className="register-container">
@@ -22,6 +23,8 @@ const RegisterContainer = () => {
                 onEmailChange={setEmail}
                 password={password}
                 onPasswordChange={setPassword}
+                confirmPassword={confirmPassword}
+                onConfirmPasswordChange={setConfirmPassword}
             />
         </div>
     )
