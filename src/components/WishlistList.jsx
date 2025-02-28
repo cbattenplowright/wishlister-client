@@ -1,14 +1,15 @@
 import React from 'react';
 
-const WishlistList = () => {
+const WishlistList = ({wishlistItems}) => {
 
     const wishlistItemsComponents = wishlistItems?.map((wishlistItem) => {
-        return <WishlistItem key={wishlistItem.id} productItem={wishlistItem} />;
+        return <WishlistItem key={wishlistItem.wishlistId} wishlistItem={wishlistItem} />;
     });
 
     return (
         <>
             <h1>Wishlists</h1>
+            <WishlistItems wishlistItemsComponents={wishlistItemsComponents} />
             
         </>
     )

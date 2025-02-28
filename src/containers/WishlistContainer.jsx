@@ -1,27 +1,11 @@
 import React from 'react';
 import { useState } from 'react';
 import WishlistList from '../components/WishlistList';
+import { wishlistItems } from '../mock-data/MockWishlists';
 
 const WishlistContainer = () => {
 
-    const wishlistItems = [
-        {
-            'wishlistId': 1,
-            'userId': 'e88ec5cb-42f5-4c14-bcc3-cef8eb2b894c',
-            'wishlistName': 'Wishlist no.1'
-        },
-        {
-            'wishlistId': 2,
-            'userId': 'e88ec5cb-42f5-4c14-bcc3-cef8eb2b894c',
-            'wishlistName': 'Wishlist no.2'
-        },
-        {
-            'wishlistId': 3,
-            'userId': 'e88ec5cb-42f5-4c14-bcc3-cef8eb2b894c',
-            'wishlistName': 'Wishlist no.3',
-        }
-    ]
-
+    console.log(wishlistItems);
 return (
     <>
         <WishlistList wishlistItems={wishlistItems}/>
