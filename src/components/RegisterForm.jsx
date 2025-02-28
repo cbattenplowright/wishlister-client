@@ -52,4 +52,4 @@ const RegisterForm = ({name, onNameChange, dob, onDobChange, email, onEmailChang
     )
 };
 
-export default LoginForm;
+export default RegisterForm;

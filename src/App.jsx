@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg';
 import './App.css';
 import Navbar from './components/Navbar';
 import LoginContainer from './containers/LoginContainer';
+import RegisterContainer from './containers/RegisterContainer';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -12,7 +13,8 @@ function App() {
     <>
       <div>
         <Navbar />
-        <LoginContainer />
+        {/* <LoginContainer /> */}
+        <RegisterContainer />
         <h1>This is a h1 tag</h1>
       </div>
       {/* <div>

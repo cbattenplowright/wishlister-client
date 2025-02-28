@@ -11,7 +11,7 @@ const RegisterContainer = () => {
     const [password, setPassword] = useState('');
 
     return (
-        <div className="login-container">
+        <div className="register-container">
             <img src={wishlisterLogo} alt="wishlister logo" />
             <RegisterForm 
                 name={name}
