@@ -5,6 +5,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import LoginContainer from './containers/LoginContainer';
 import RegisterContainer from './containers/RegisterContainer';
+import WishlistContainer from './containers/WishlistContainer';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,7 +15,8 @@ function App() {
       <div>
         <Navbar />
         {/* <LoginContainer /> */}
-        <RegisterContainer />
+        {/* <RegisterContainer /> */}
+        <WishlistContainer />
         <h1>This is a h1 tag</h1>
       </div>
       {/* <div>
