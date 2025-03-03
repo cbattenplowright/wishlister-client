@@ -1,4 +1,5 @@
 import React from 'react';
+import WishlistItem from './WishlistItem';
 
 const WishlistList = ({wishlistItems}) => {
 
@@ -6,12 +7,13 @@ const WishlistList = ({wishlistItems}) => {
         return <WishlistItem key={wishlistItem.wishlistId} wishlistItem={wishlistItem} />;
     });
 
+    console.log(wishlistItemsComponents);
+
     return (
-        <>
+        <div id="wishlist-list">
             <h1>Wishlists</h1>
-            <WishlistItems wishlistItemsComponents={wishlistItemsComponents} />
-            
-        </>
+            {wishlistItemsComponents}
+        </div>
     )
 };
 

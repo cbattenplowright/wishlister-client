@@ -4,7 +4,7 @@ import WishlistList from '../components/WishlistList';
 import { wishlistItems } from '../mock-data/MockWishlists';
 
 const WishlistContainer = () => {
-
+    
     console.log(wishlistItems);
 return (
     <>
