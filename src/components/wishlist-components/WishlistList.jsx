@@ -11,7 +11,7 @@ const WishlistList = ({wishlistItems}) => {
 
     return (
         <div id="wishlist-list">
-            <h1>Wishlists</h1>
+            <h1>My Wishlists</h1>
             {wishlistItemsComponents}
         </div>
     )

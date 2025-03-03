@@ -2,10 +2,10 @@ import { useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
-import Navbar from './components/Navbar';
+import Navbar from './components/navbar-components/Navbar';
 import LoginContainer from './containers/LoginContainer';
 import RegisterContainer from './containers/RegisterContainer';
-import WishlistContainer from './containers/WishlistContainer';
+import WishlistListContainer from './containers/WishlistListContainer';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -16,7 +16,7 @@ function App() {
         <Navbar />
         {/* <LoginContainer /> */}
         {/* <RegisterContainer /> */}
-        <WishlistContainer />
+        <WishlistListContainer />
         <h1>This is a h1 tag</h1>
       </div>
       {/* <div>
