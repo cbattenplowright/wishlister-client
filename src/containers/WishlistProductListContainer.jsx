@@ -3,9 +3,13 @@ import WishlistProductList from '../components/wishlist-components/WishlistProdu
 import { wishlistProductItems } from '../mock-data/MockWishlistProducts';
 
 const WishlistProductListContainer = () => {
+
+    const wishlistProductItems = wishlistProductItems;
+    const wishlistProductItemsForWishlist1 = wishlistProductItems.filter((wishlistProductItem) => wishlistProductItem.wishlistId === 1);
+
     return (
         <div className="wishlist-product-list-container">
-            <WishlistProductList wishlistProductItems={wishlistProductItems}/>
+            <WishlistProductList wishlistProductItems={wishlistProductItemsForWishlist1} wishlistName={"Wishlist no.1"}/>
         </div>
     );
 }
