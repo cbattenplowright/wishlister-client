@@ -1,10 +1,10 @@
 import React from 'react';
-import WishlistProductList from '../components/wishlist-components/WishlistProductList';
-import { wishlistProductItems } from '../mock-data/MockWishlistProducts';
+import WishlistProductList from '../components/wishlist-product-list-components/WishlistProductList';
+import { mockWishlistProductItems } from '../mock-data/MockWishlistProductItems';
 
 const WishlistProductListContainer = () => {
 
-    const wishlistProductItems = wishlistProductItems;
+    const wishlistProductItems = mockWishlistProductItems;
     const wishlistProductItemsForWishlist1 = wishlistProductItems.filter((wishlistProductItem) => wishlistProductItem.wishlistId === 1);
 
     return (
