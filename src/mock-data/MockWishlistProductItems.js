@@ -4,32 +4,32 @@ import { mockWishlistsProducts } from './MockProducts';
 export const wishlistProductItems = [
     {
         wishlistProductId: 1,
-        wishlist: mockWishlists[0],
-        product: mockWishlistsProducts[0],
+        wishlistId: 1,
+        product: mockProducts[0],
         isPurchased: false,
     },
     {
         wishlistProductId: 2,
-        wishlist: mockWishlists[0],
-        product: mockWishlistsProducts[1],
+        wishlistId: 1,
+        product: mockProducts[1],
         isPurchased: true,
     },
     {
         wishlistProductId: 3,
-        wishlist: mockWishlists[1],
-        product: mockWishlistsProducts[2],
+        wishlistId: 1,
+        product: mockProducts[2],
         isPurchased: false,
     },
     {
         wishlistProductId: 4,
-        wishlist: mockWishlists[1],
-        product: mockWishlistsProducts[3],
+        wishlistId: 2,
+        product: mockProducts[3],
         isPurchased: true,
     },
     {
         wishlistProductId: 5,
-        wishlist: mockWishlists[2],
-        product: mockWishlistsProducts[4],
+        wishlistId: 2,
+        product: mockProducts[4],
         isPurchased: false,
     }
 ];
