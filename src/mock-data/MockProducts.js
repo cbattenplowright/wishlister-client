@@ -1,6 +1,4 @@
-import { mockUsers } from "./MockUsers";
-
-export const wishlistProducts = [
+export const mockProducts = [
     {
         'productId': 1,
         'productName': "PlayStation 5",

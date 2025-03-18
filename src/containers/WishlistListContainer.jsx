@@ -1,14 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
 import WishlistList from '../components/wishlist-components/WishlistList';
-import { mockWishlistItems } from '../mock-data/MockWishlists';
+import { mockWishlists } from '../mock-data/MockWishlists';
 
 const WishlistContainer = () => {
 
-    console.log(mockWishlistItems);
+    console.log(mockWishlists);
     return (
         <>
-            <WishlistList wishlistItems={mockWishlistItems}/>
+            <WishlistList wishlistItems={mockWishlists}/>
         </>
     )
 };

@@ -1,7 +1,6 @@
-import { mockWishlists } from './MockWishlists';
-import { mockWishlistsProducts } from './MockProducts';
+import { mockProducts } from './MockProducts';
 
-export const wishlistProductItems = [
+export const mockWishlistProductItems = [
     {
         wishlistProductId: 1,
         wishlistId: 1,

@@ -1,4 +1,5 @@
 import React from "react";
+import WishlistProductItem from "./WishlistProductItem";
 
 const WishlistProductList = ({ wishlistProductItems, wishlistName }) => {
 
