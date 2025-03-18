@@ -26,9 +26,15 @@ const WishlistProductItem = ({ wishlistProductItem }) => {
         },
         button: {
             border: 'none',
-            background: 'transparent',
+            borderRadius: '50%',
+            background: '#d3d3d3',
             cursor: 'pointer',
-            padding: '8px'
+            padding: '8px',
+            width: '40px',
+            height: '40px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
         }
     }
 
