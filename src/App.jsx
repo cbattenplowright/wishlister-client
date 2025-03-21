@@ -7,6 +7,7 @@ import LoginContainer from './containers/LoginContainer';
 import RegisterContainer from './containers/RegisterContainer';
 import WishlistListContainer from './containers/WishlistListContainer';
 import WishlistProductListContainer from './containers/WishlistProductListContainer';
+import Product from './components/product-components/Product';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,7 +18,8 @@ function App() {
         <Navbar />
         {/* <LoginContainer /> */}
         {/* <RegisterContainer /> */}
-        <WishlistProductListContainer />
+        {/* <WishlistProductListContainer /> */}
+        <Product />
         <h1>This is a h1 tag</h1>
       </div>
       {/* <div>
