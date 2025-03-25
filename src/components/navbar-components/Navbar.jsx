@@ -1,6 +1,7 @@
 import React from 'react';
 import AccountButton from './AccountButton';
 import MenuButton from './MenuButton';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
     const styles = {
@@ -27,6 +28,11 @@ const Navbar = () => {
             <MenuButton />
             <h1 style={styles.h1}>Wishlister</h1>
             <AccountButton />
+            <Link to="/">Login</Link>
+            <Link to="/register">Register</Link>
+            <Link to="/wishlists">Wishlists</Link>
+            <Link to="/wishlist/1">Wishlist 1</Link>
+            <Link to="/wishlist/1/product/1">Product 1</Link>
         </div>
     )
 }

@@ -1,28 +1,32 @@
 import { useState } from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
-import Navbar from './components/navbar-components/Navbar';
 import LoginContainer from './containers/LoginContainer';
 import RegisterContainer from './containers/RegisterContainer';
 import WishlistListContainer from './containers/WishlistListContainer';
 import WishlistProductListContainer from './containers/WishlistProductListContainer';
 import WishlistProductContainer from './containers/WishlistProductContainer';
+import LayoutContainer from './containers/LayoutContainer';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <Navbar />
-        {/* <LoginContainer /> */}
-        {/* <RegisterContainer /> */}
-        {/* <WishlistProductListContainer /> */}
-        <WishlistProductContainer />
-        <h1>This is a h1 tag</h1>
-      </div>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LayoutContainer />}>
+          <Route index element={<LoginContainer />} />
+          <Route path="/register" element={<RegisterContainer />} />
+          <Route path="/wishlists" element={<WishlistListContainer />} />
+          <Route path="/wishlist/:wishlistId" element={<WishlistProductListContainer />} />
+          <Route path="/wishlist/:wishlistId/product/:productId" element={<WishlistProductContainer />} />
+        </Route>
+      </Routes>
+      <h1>This is a h1 tag</h1>
+    </BrowserRouter>
   )
 };
 
