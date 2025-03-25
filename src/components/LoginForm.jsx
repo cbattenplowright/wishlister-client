@@ -1,13 +1,27 @@
-import React, { use } from 'react';
+import React, { useState } from 'react';
 import './LoginForm.css';
 import { useNavigate } from 'react-router-dom';
 
-const LoginForm = ({email, onEmailChange, password, onPasswordChange}) => {
+const LoginForm = ({}) => {
 
     let navigate = useNavigate();
+
+    const [input, setInput] = useState({
+        email: '',
+        password: ''
+    })
+
     const credentials = {
         email: 'test@gmail.com',
         password: 'test123'
+    }
+
+    const handleInputChange = (e) => {
+        const [ name, value ] = e.target;
+        setInput({
+            ...prev,
+            [name]:value
+        });
     }
 
     const handleSubmit = (e) => {
@@ -25,16 +39,16 @@ const LoginForm = ({email, onEmailChange, password, onPasswordChange}) => {
             <form className="login-form" onSubmit={handleSubmit}>
                 <input 
                     type="email"
-                    value={email}
+                    value={input.email}
                     placeholder="Email address"
-                    onChange={(e) => onEmailChange(e.target.value)}
+                    onChange={handleInputChange}
                     required
                 />
                 <input 
                     type="password"
-                    value={password}
+                    value={input.password}
                     placeholder="Password"
-                    onChange={(e) => onPasswordChange(e.target.value)}
+                    onChange={handleInputChange}
                     required
                 />
                 <button type="submit">Login</button>
