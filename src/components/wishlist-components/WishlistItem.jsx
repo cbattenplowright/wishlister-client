@@ -1,5 +1,6 @@
 import React from 'react';
 import ShareIcon from '@mui/icons-material/Share';
+import './WishlistItem.css';
 
 const WishlistItem = ({ wishlistItem }) => {
     return (
