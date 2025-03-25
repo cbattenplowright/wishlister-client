@@ -1,5 +1,6 @@
 import React from "react";
 import WishlistProductItem from "./WishlistProductItem";
+import './WishlistProductList.css';
 
 const WishlistProductList = ({ wishlistProductItems, wishlistName }) => {
 
@@ -8,7 +9,7 @@ const WishlistProductList = ({ wishlistProductItems, wishlistName }) => {
     });
 
     return ( 
-        <div id="wishlist-product-list">
+        <div className="wishlist-product-list">
             <h1>{wishlistName}</h1>
             {wishlistProductItemsComponents}
         </div>

@@ -16,9 +16,9 @@ function App() {
     <>
       <div>
         <Navbar />
-        <LoginContainer />
+        {/* <LoginContainer /> */}
         {/* <RegisterContainer /> */}
-        {/* <WishlistProductListContainer /> */}
+        <WishlistProductListContainer />
         {/* <Product /> */}
         <h1>This is a h1 tag</h1>
       </div>
