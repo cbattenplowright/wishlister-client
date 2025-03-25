@@ -26,34 +26,40 @@ const LoginForm = ({}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (input.email === credentials.email && input.password === credentials.password) {
-            alert('Login successful');
-            navigate('/wishlists')
+        if (input.email !== "" && input.password !== "") {
+            // alert('Login successful');
+            // navigate('/wishlists');
         }
-        console.log('Email:', input.email);
-        console.log('Password:', input.password);
+        alert('please provide a valid input');
     }
 
     return(
         <>
             <form className="login-form" onSubmit={handleSubmit}>
+                <label htmlFor="user-email">Email</label>
                 <input 
                     type="email"
+                    id="user-email"
                     name="email"
                     value={input.email}
-                    placeholder="Email address"
+                    placeholder="example@gmail.com"
                     onChange={handleInputChange}
+                    aria-describedby="user-email"
+                    aria-invalid="false"
                     required
                 />
+                <label htmlFor="user-password">Password</label>
                 <input 
                     type="password"
+                    id="user-password"
                     name="password"
                     value={input.password}
-                    placeholder="Password"
                     onChange={handleInputChange}
+                    aria-describedby="user-email"
+                    aria-invalid="false"
                     required
                 />
-                <button type="submit">Login</button>
+                <button className="btn-submit" type="submit">Login</button>
             </form>
         </>
     )
