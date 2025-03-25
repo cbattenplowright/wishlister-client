@@ -1,4 +1,5 @@
 import React from 'react';
+import './LoginForm.css';
 
 const LoginForm = ({email, onEmailChange, password, onPasswordChange}) => {
 

@@ -2,6 +2,7 @@ import React from 'react';
 import {useState} from 'react';
 import LoginForm from '../components/LoginForm';
 import wishlisterLogo from '../assets/wishlisterlogo.svg';
+import './LoginContainer.css';
 
 const LoginContainer = () => {
 
