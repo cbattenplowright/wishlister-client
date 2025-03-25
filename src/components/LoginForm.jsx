@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { use } from 'react';
 import './LoginForm.css';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = ({email, onEmailChange, password, onPasswordChange}) => {
 
+    let navigate = useNavigate();
+    const credentials = {
+        email: 'test@gmail.com',
+        password: 'test123'
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (email === credentials.email && password === credentials.password) {
+            alert('Login successful');
+            navigate('/wishlists')
+        }
         console.log('Email:', email);
         console.log('Password:', password);
     }
