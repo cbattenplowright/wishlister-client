@@ -17,21 +17,21 @@ const LoginForm = ({}) => {
     }
 
     const handleInputChange = (e) => {
-        const [ name, value ] = e.target;
-        setInput({
+        const { name, value } = e.target;
+        setInput(prev => ({
             ...prev,
-            [name]:value
-        });
-    }
+            [name] : value
+        }));
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (email === credentials.email && password === credentials.password) {
+        if (input.email === credentials.email && input.password === credentials.password) {
             alert('Login successful');
             navigate('/wishlists')
         }
-        console.log('Email:', email);
-        console.log('Password:', password);
+        console.log('Email:', input.email);
+        console.log('Password:', input.password);
     }
 
     return(
@@ -39,6 +39,7 @@ const LoginForm = ({}) => {
             <form className="login-form" onSubmit={handleSubmit}>
                 <input 
                     type="email"
+                    name="email"
                     value={input.email}
                     placeholder="Email address"
                     onChange={handleInputChange}
@@ -46,6 +47,7 @@ const LoginForm = ({}) => {
                 />
                 <input 
                     type="password"
+                    name="password"
                     value={input.password}
                     placeholder="Password"
                     onChange={handleInputChange}
