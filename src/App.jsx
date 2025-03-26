@@ -10,23 +10,28 @@ import WishlistListContainer from './containers/WishlistListContainer';
 import WishlistProductListContainer from './containers/WishlistProductListContainer';
 import WishlistProductContainer from './containers/WishlistProductContainer';
 import LayoutContainer from './containers/LayoutContainer';
+import AuthProvider from './AuthProvider';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LayoutContainer />}>
-          <Route index element={<LoginContainer />} />
-          <Route path="/register" element={<RegisterContainer />} />
-          <Route path="/wishlists" element={<WishlistListContainer />} />
-          <Route path="/wishlist/:wishlistId" element={<WishlistProductListContainer />} />
-          <Route path="/wishlist/:wishlistId/product/:productId" element={<WishlistProductContainer />} />
-        </Route>
-      </Routes>
-      <h1>This is a h1 tag</h1>
-    </BrowserRouter>
+    <div className='App'>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<LayoutContainer />}>
+              <Route index element={<LoginContainer />} />
+              <Route path="/register" element={<RegisterContainer />} />
+              <Route path="/wishlists" element={<WishlistListContainer />} />
+              <Route path="/wishlist/:wishlistId" element={<WishlistProductListContainer />} />
+              <Route path="/wishlist/:wishlistId/product/:productId" element={<WishlistProductContainer />} />
+            </Route>
+          </Routes>
+          <h1>This is a h1 tag</h1>
+        </BrowserRouter>
+      </AuthProvider>
+    </div>
   )
 };
 
