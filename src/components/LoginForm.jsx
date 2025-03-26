@@ -27,10 +27,12 @@ const LoginForm = ({}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (input.email !== "" && input.password !== "") {
+            alert('Login clicked');
             // alert('Login successful');
             // navigate('/wishlists');
+        } else {
+            alert('please provide a valid input');
         }
-        alert('please provide a valid input');
     }
 
     return(
