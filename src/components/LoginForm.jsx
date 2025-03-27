@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './LoginForm.css';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/AuthProvider';
 
 const LoginForm = ({}) => {
 
@@ -27,6 +28,7 @@ const LoginForm = ({}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (input.email !== "" && input.password !== "") {
+            auth.loginUser(input);
             alert('Login clicked');
             // alert('Login successful');
             // navigate('/wishlists');
