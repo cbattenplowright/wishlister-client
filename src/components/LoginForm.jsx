@@ -6,6 +6,7 @@ import { useAuth } from '../hooks/AuthProvider';
 const LoginForm = ({}) => {
 
     let navigate = useNavigate();
+    const auth = useAuth();
 
     const [input, setInput] = useState({
         email: '',
