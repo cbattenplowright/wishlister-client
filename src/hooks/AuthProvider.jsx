@@ -8,26 +8,39 @@ const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const loginUser = async (data) => {
+    console.log(data.email, data.password);
     try {
       const response = await fetch(
+        // "http://localhost:8080/api/users/2e883599-d579-4525-8f85-a6e357974d20",
         "https://wishlister-h2tf.onrender.com/api/users/2e883599-d579-4525-8f85-a6e357974d20",
         {
           method: "GET",
           headers: {
-            "Authorization": `Basic ${btoa(`${data.email}:${data.password}`)}`,
+            Authorization: `Basic ${btoa(`${data.email}:${data.password}`)}`,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(data),
+          credentials: "include"
         }
       );
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       const res = await response.json();
-      if (res.data) {
-        setUser(res.data.user);
+      console.log(res);
+      if (res) {
+        setUser(res.data);
         navigate("/wishlists");
         return;
       }
-      throw new Error(res.message);
+      throw new Error(res.message || "Login failed");
     } catch (err) {
+      if (err.message.includes("HTTP error!")) {
+        alert("Login failed - please check your credentials");
+      } else {
+        alert("Network error - please try again later");
+      }
       console.error(err);
     }
   };
