@@ -32,6 +32,7 @@ const AuthProvider = ({ children }) => {
       if (res) {
         setUser(res.data);
         navigate("/wishlists");
+        alert("Login successful");
         return;
       }
       throw new Error(res.message || "Login failed");

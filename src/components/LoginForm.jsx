@@ -13,11 +13,6 @@ const LoginForm = ({}) => {
         password: ''
     })
 
-    const credentials = {
-        email: 'test@gmail.com',
-        password: 'test123'
-    }
-
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setInput(prev => ({
@@ -30,9 +25,6 @@ const LoginForm = ({}) => {
         e.preventDefault();
         if (input.email !== "" && input.password !== "") {
             auth.loginUser(input);
-            alert('Login clicked');
-            // alert('Login successful');
-            // navigate('/wishlists');
         } else {
             alert('please provide a valid input');
         }
