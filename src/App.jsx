@@ -23,8 +23,8 @@ function App() {
           <Routes>
             <Route path="/" element={<LayoutContainer />}>
               <Route index element={<LoginContainer />} />
+              <Route path="/register" element={<RegisterContainer />} />
               <Route element={<PrivateRoute />}>
-                <Route path="/register" element={<RegisterContainer />} />
                 <Route path="/wishlists" element={<WishlistListContainer />} />
                 <Route
                   path="/wishlist/:wishlistId"

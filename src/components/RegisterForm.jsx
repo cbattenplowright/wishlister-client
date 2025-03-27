@@ -1,11 +1,11 @@
 import React from 'react';
 import './RegisterForm.css';
 
-const RegisterForm = ({name, onNameChange, dob, onDobChange, email, onEmailChange, password, onPasswordChange, confirmPassword, onConfirmPasswordChange, onSubmit}) => {
+const RegisterForm = ({name, onNameChange, dob, onDobChange, email, onEmailChange, password, onPasswordChange, confirmPassword, onConfirmPasswordChange,  registerUser}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit({name, dob, email, password});
+        registerUser();
     }
 
     return(

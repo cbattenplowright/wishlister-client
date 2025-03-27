@@ -13,6 +13,28 @@ const RegisterContainer = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const registerUser = async () => {
+        try {
+            const response = await fetch(
+                "https://wishlister-h2tf.onrender.com/api/register",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(
+                        {
+                            "email": email,
+                            "password": password,
+                            "name": name,
+                            "dateOfBirth": dob
+                        }
+                    )
+                }
+            )
+        }
+    }
+
     const handleSubmit = (e) => {
         console.log('Name:', e.name);
         console.log('Date of Birth:', e.dob);
