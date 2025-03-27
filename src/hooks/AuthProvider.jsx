@@ -27,9 +27,16 @@ const AuthProvider = ({children}) => {
           console.error(err);
         }
       };
-
+    
+    const logoutUser = () => {
+      setUser(null);
+      navigate("/login");
+    }
+    
     return ( 
-        <AuthContext.Provider>{children}</AuthContext.Provider>
+        <AuthContext.Provider value={{user, loginUser, logoutUser}}>
+          {children}
+        </AuthContext.Provider>
     );
 }
 
