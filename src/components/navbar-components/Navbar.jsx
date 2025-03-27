@@ -1,6 +1,7 @@
 import React from 'react';
 import AccountButton from './AccountButton';
 import MenuButton from './MenuButton';
+import LogOutButton from './LogOutButton';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -33,6 +34,7 @@ const Navbar = () => {
             <Link to="/wishlists">Wishlists</Link>
             <Link to="/wishlist/1">Wishlist 1</Link>
             <Link to="/wishlist/1/product/1">Product 1</Link>
+            <LogOutButton />
         </div>
     )
 }
