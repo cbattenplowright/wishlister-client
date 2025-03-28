@@ -11,15 +11,14 @@ const AuthProvider = ({ children }) => {
     console.log(data.email, data.password);
     try {
       const response = await fetch(
-        "http://localhost:8080/api/users/login",
-        // "https://wishlister-h2tf.onrender.com/api/users/login",
+        // "http://localhost:8080/api/users/login",
+        "https://wishlister-h2tf.onrender.com/api/users/login",
         {
           method: "GET",
           headers: {
             Authorization: `Basic ${btoa(`${data.email}:${data.password}`)}`,
             "Content-Type": "application/json",
           },
-          credentials: "include"
         }
       );
 
@@ -30,9 +29,8 @@ const AuthProvider = ({ children }) => {
       const res = await response.json();
       console.log(res);
       if (res) {
-        setUser(res.data);
+        setUser(res);
         navigate("/wishlists");
-        alert("Login successful");
         return;
       }
       throw new Error(res.message || "Login failed");
