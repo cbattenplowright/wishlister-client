@@ -11,8 +11,8 @@ const AuthProvider = ({ children }) => {
     console.log(data.email, data.password);
     try {
       const response = await fetch(
-        // "http://localhost:8080/api/users/2e883599-d579-4525-8f85-a6e357974d20",
-        "https://wishlister-h2tf.onrender.com/api/users/2e883599-d579-4525-8f85-a6e357974d20",
+        "http://localhost:8080/api/users/login",
+        // "https://wishlister-h2tf.onrender.com/api/users/login",
         {
           method: "GET",
           headers: {
