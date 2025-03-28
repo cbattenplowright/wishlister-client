@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [credentials, setCredentials] = useState(null);
   const navigate = useNavigate();
 
   const loginUser = async (data) => {
@@ -30,6 +31,7 @@ const AuthProvider = ({ children }) => {
       console.log(res);
       if (res) {
         setUser(res);
+        setCredentials(data.password);
         navigate("/wishlists");
         return;
       }
@@ -46,11 +48,12 @@ const AuthProvider = ({ children }) => {
 
   const logoutUser = () => {
     setUser(null);
+    setCredentials(null);
     navigate("/");
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, loginUser, logoutUser }}>
+    <AuthContext.Provider value={{ user, credentials, setUser, loginUser, logoutUser }}>
       {children}
     </AuthContext.Provider>
   );
