@@ -18,8 +18,8 @@ const WishlistContainer = () => {
 
             console.log(`Fetching wishlists for user credentials:, ${auth.user.email}, ${auth.credentials}`);
             const response = await fetch (
-                `https://wishlister-h2tf.onrender.com/api/wishlists/${auth.user.userAccountId}`,
-                // `http://localhost:8080/api/wishlists/${auth.user.id}`,
+                // `https://wishlister-h2tf.onrender.com/api/wishlists/${auth.user.userAccountId}`,
+                `http://localhost:8080/api/wishlists/${auth.user.userAccountId}`,
                 {
                     method: "GET",
                     headers: {
