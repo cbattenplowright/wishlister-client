@@ -2,12 +2,16 @@ import React from 'react';
 import ShareIcon from '@mui/icons-material/Share';
 import { useNavigate } from 'react-router-dom';
 import './WishlistItem.css';
+import { useWishlist } from '../../hooks/WishlistProvider';
 
 const WishlistItem = ({ wishlistItem }) => {
+
+    const wishlist = useWishlist();
 
     const navigate = useNavigate();
 
     const handleClick = () => {
+        wishlist.setWishlistId(wishlistItem.wishlistId);
         alert(`Clicked on ${wishlistItem.wishlistName}`);
         navigate(`/wishlist/${wishlistItem.wishlistId}`);
     }
