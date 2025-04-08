@@ -39,11 +39,13 @@ const WishlistProductItem = ({ wishlistProductItem }) => {
     //     }
     // }
 
+    console.log(wishlistProductItem);
+
     return ( 
         <div className="wishlist-product-item">
             <img src="https://placehold.co/100" alt="photo of wishlist product" />
-            <h2>{wishlistProductItem.product.productName}</h2>
-            <p>£{wishlistProductItem.product.price}</p>
+            <h2>{wishlistProductItem.productName}</h2>
+            <p>£{wishlistProductItem.price}</p>
             <button>
                 <ShareIcon />
             </button>

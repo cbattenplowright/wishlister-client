@@ -15,17 +15,41 @@ const Product = ({}) => {
             'priority' : "HIGH",
             'description' : "Next-gen gaming console with ultra-high speed SSD",
             'dateAdded' : "03-03-2025"
-        })
+        });
 
         const handleEdit = () => {
             setIsEditing(true);
             console.log('Edit button clicked');
-        }
-        const handleSave = () => {
-            setIsEditing(false);
-            console.log('Save button clicked');
+        };
+        // const handleSave = () => {
+        //     setIsEditing(false);
+        //     console.log('Save button clicked');
+
+        //     try {
+        //     const updateProductApiCall = async () => { 
+        //         const response = await fetch(
+        //             `http://localhost:8080/api/products/${wishlistProductItem.productId}`,
+        //             {
+        //                 method: 'PUT',
+        //                 headers: {
+        //                     'Content-Type': 'application/json'
+        //                 },
+        //                 body: JSON.stringify(wishlistProductItem)
+        //             }
+        //         );
+
+        //         if (!response.ok) {
+        //             throw new Error(`HTTP error! status: ${response.status}`);
+        //         }
+
+
+        //     }
+        // } catch (err) {
+        //         console.error(`Error saving product:`, err);
+        //     }
+
             // TODO: Add API call to update product
-        }
+        
         const handleDelete = () => {
             console.log('Delete button clicked');
             // TODO: Add API call to delete product
@@ -36,7 +60,6 @@ const Product = ({}) => {
                 ...wishlistProductItem,
                 [name]: value
             });
-        }
 
     return ( 
         <div className='product'>
@@ -118,6 +141,7 @@ const Product = ({}) => {
             <button onClick={handleDelete}>Delete</button>
         </div> 
     );
+}
 }
  
 export default Product;

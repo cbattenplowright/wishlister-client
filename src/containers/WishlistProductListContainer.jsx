@@ -6,7 +6,7 @@ import { useWishlist } from "../hooks/WishlistProvider";
 
 const WishlistProductListContainer = () => {
   const auth = useAuth();
-  const wishlist = useWishlist();
+  const wishlistContext = useWishlist();
   const [wishlistProductItems, setWishlistProductItems] = useState(null);
 
   const fetchWishlist = async () => {
@@ -17,12 +17,12 @@ const WishlistProductListContainer = () => {
       }
 
       console.log(
-        `Fetching wishlist for user credentials:, ${auth.user.email}, ${auth.credentials}`
+        `Fetching wishlistProducts for user credentials:, ${auth.user.email}, ${auth.credentials}`
       );
 
       const response = await fetch(
         // `https://wishlister-h2tf.onrender.com/api/wishlists/${auth.user.userAccountId}`,
-        `http://localhost:8080/api/wishlists/${auth.user.userAccountId}/${wishlist.wishlistId}`,
+        `http://localhost:8080/api/wishlists/${auth.user.userAccountId}/${wishlistContext.wishlistId}`,
         {
           method: "GET",
           headers: {
@@ -38,9 +38,10 @@ const WishlistProductListContainer = () => {
       }
 
       const res = await response.json();
+      console.log('res: ', res);
       if (res) {
+        console.log('WishlistProductItems have been set to: ' + res);
         setWishlistProductItems(res);
-        console.log(res);
       }
     } catch (err) {
       console.error("Error fetching wishlist:", err);
@@ -49,18 +50,19 @@ const WishlistProductListContainer = () => {
 
   useEffect(() => {
     if (auth.user) {
-      console.log(auth.user);
+      console.log(`WishlistProductListContainer rendering with user, ` + auth.user);
       fetchWishlist();
     }
   }, [auth.user]);
 
   // const wishlistProductItemsForWishlist1 = wishlistProductItems.filter((wishlistProductItem) => wishlistProductItem.wishlistId === 1);
 
+  console.log('wishlistName is:', wishlistProductItems?.wishlistName);
   return (
     <div className="wishlist-product-list-container">
       <WishlistProductList
+        // wishlistName={wishlistProductItems.wishlistName}
         wishlistProductItems={wishlistProductItems}
-        wishlistName={"Wishlist no.1"}
       />
     </div>
   );

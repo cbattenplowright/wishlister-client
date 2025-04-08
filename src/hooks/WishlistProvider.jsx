@@ -3,11 +3,14 @@ import { useContext, createContext, useState } from 'react';
 const WishlistContext = createContext();
 
 const WishlistProvider = ({ children }) => {
+    const [wishlists, setWishlists] = useState(null);
     const [wishlistId, setWishlistId] = useState(null);
 
     const value = {
         wishlistId,
-        setWishlistId
+        setWishlistId,
+        wishlists,
+        setWishlists,
     };
 
     return (

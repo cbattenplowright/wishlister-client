@@ -3,10 +3,12 @@ import { useState } from 'react';
 import WishlistList from '../components/wishlist-components/WishlistList';
 import { mockWishlists } from '../mock-data/MockWishlists';
 import { useAuth } from '../hooks/AuthProvider';
+import { useWishlist } from '../hooks/WishlistProvider';
 
 const WishlistContainer = () => {
 
-    const [wishlists, setWishlists] = useState(null);
+    const wishlistContext = useWishlist();
+    // const [wishlists, setWishlists] = useState(null);
     const auth = useAuth();
 
     const fetchWishlists = async () => {
@@ -34,7 +36,7 @@ const WishlistContainer = () => {
 
             const res = await response.json();
             if (res) {
-                setWishlists(res);
+                wishlistContext.setWishlists(res);
             }
 
         } catch (err) {
@@ -49,10 +51,10 @@ const WishlistContainer = () => {
         }
     }, [auth.user]);
 
-    console.log(mockWishlists);
+    console.log('wishlists: ', wishlistContext.wishlists);
     return (
         <>
-            <WishlistList wishlistItems={wishlists}/>
+            <WishlistList wishlistItems={wishlistContext.wishlists}/>
         </>
     )
 };
