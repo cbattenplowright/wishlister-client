@@ -11,19 +11,12 @@ const WishlistProductList = ({ wishlistProductItems, wishlistName }) => {
         return <div className="wishlist-product-list">Loading...</div>;
     }
 
-    // console.log('wishlistProducts: ', wishlistProductItems.products);
-    // const items = wishlistProductItems ? Object.values(wishlistProductItems) : [];
-
-    // console.log('items: ', items);
-
-    const wishlistProductItemsComponents = wishlistProductItems.products.map((product) => {
+    const wishlistProductItemsComponents = wishlistProductItems.products.map((product, index) => {
         return <WishlistProductItem 
-            key={product.productId} 
+            key={index} 
             wishlistProductItem={product} 
         />;
     });
-
-    
 
     return ( 
         <div className="wishlist-product-list">
