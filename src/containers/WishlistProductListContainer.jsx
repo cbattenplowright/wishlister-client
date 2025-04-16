@@ -38,7 +38,7 @@ const WishlistProductListContainer = () => {
       }
 
       const res = await response.json();
-      console.log('res: ', res);
+
       if (res) {
         console.log('WishlistProductItems have been set to: ' + res);
         setWishlistProductItems(res);
