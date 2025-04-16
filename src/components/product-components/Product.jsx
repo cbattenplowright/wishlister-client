@@ -1,9 +1,9 @@
-import react from "react";
+import react, { useEffect } from "react";
 import { useState } from "react";
 import "./Product.css";
 import { useAuth } from "../../hooks/AuthProvider";
 
-const Product = ({ product }) => {
+const Product = ({ product, updateProduct }) => {
   const auth = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [productItem, setProductItem] = useState(product);
@@ -28,30 +28,7 @@ const Product = ({ product }) => {
   const handleSave = () => {
     setIsEditing(false);
     console.log("Save button clicked");
-
-    try {
-      const updateProductApiCall = async () => {
-        const response = await fetch(
-          `http://localhost:8080/api/products/${product.productId}`,
-          {
-            method: "PUT",
-            headers: {
-              Authorization: `Basic ${btoa(
-                `${auth.user.email}:${auth.user.password}`
-              )}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(product),
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-      };
-    } catch (err) {
-      console.error(`Error saving product:`, err);
-    }
+    updateProduct(productItem);
   };
 
   // TODO: Add API call to update product
@@ -71,6 +48,10 @@ const Product = ({ product }) => {
 
   console.log("Product component rendering with productItem:", productItem);
   console.log("Product name is: ", productItem.productName);
+
+  useEffect(() => {
+    setProductItem(product);
+  }, [product]);
 
   return (
     <div className="product">
@@ -125,7 +106,7 @@ const Product = ({ product }) => {
             Priority:{" "}
             <select
               name="priority"
-              value={productItem.priority}
+              value={productItem.prioritySelection}
               onChange={handleInputChange}
             >
               <option value="HIGH">High</option>
@@ -141,7 +122,7 @@ const Product = ({ product }) => {
           <p>Price: {productItem.price}</p>
           <p>Description: {productItem.description}</p>
           <p>Where to purchase: {productItem.url}</p>
-          <p>Priority: {productItem.priority}</p>
+          <p>Priority: {productItem.prioritySelection}</p>
           <p>Added on {productItem.dateAdded}</p>
         </>
       )}
