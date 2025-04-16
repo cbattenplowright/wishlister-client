@@ -1,72 +1,80 @@
 import react from 'react';
 import { useState } from 'react';
 import './Product.css';
+import { useAuth } from '../../hooks/AuthProvider';
 
-const Product = ({}) => {
+const Product = ({ }) => {
 
+    const auth = useAuth();
     const [isEditing, setIsEditing] = useState(false);
     const [wishlistProductItem, setWishlistProductItem] = useState(
         {
-            'productId': 1,
+            'productId': 2,
             'productName': "PlayStation 5",
             'price': 499,
             'url': "https://www.amazon.com/PlayStation-5-Console/dp/B08FC5L3RG",
-            'imageUrl' : "https://placehold.co/300",
-            'priority' : "HIGH",
-            'description' : "Next-gen gaming console with ultra-high speed SSD",
-            'dateAdded' : "03-03-2025"
+            'imageUrl': "https://placehold.co/300",
+            'priority': "HIGH",
+            'description': "Next-gen gaming console with ultra-high speed SSD",
+            'dateAdded': "03-03-2025"
         });
 
-        const handleEdit = () => {
-            setIsEditing(true);
-            console.log('Edit button clicked');
-        };
-        // const handleSave = () => {
-        //     setIsEditing(false);
-        //     console.log('Save button clicked');
+    const handleEdit = () => {
+        setIsEditing(true);
+        console.log('Edit button clicked');
+    };
 
-        //     try {
-        //     const updateProductApiCall = async () => { 
-        //         const response = await fetch(
-        //             `http://localhost:8080/api/products/${wishlistProductItem.productId}`,
-        //             {
-        //                 method: 'PUT',
-        //                 headers: {
-        //                     'Content-Type': 'application/json'
-        //                 },
-        //                 body: JSON.stringify(wishlistProductItem)
-        //             }
-        //         );
+    const handleSave = () => {
+        setIsEditing(false);
+        console.log('Save button clicked');
 
-        //         if (!response.ok) {
-        //             throw new Error(`HTTP error! status: ${response.status}`);
-        //         }
+        try {
+            const updateProductApiCall = async () => {
+                const response = await fetch(
+                    `http://localhost:8080/api/products/${wishlistProductItem.productId}`,
+                    {
+                        method: 'PUT',
+                        headers: {
+                            Authorization: `Basic ${btoa(`${auth.user.email}:${auth.user.password}`)}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(wishlistProductItem)
+                    }
+                );
 
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
 
-        //     }
-        // } catch (err) {
-        //         console.error(`Error saving product:`, err);
-        //     }
-
-            // TODO: Add API call to update product
-        
-        const handleDelete = () => {
-            console.log('Delete button clicked');
-            // TODO: Add API call to delete product
+            }
+        } catch (err) {
+            console.error(`Error saving product:`, err);
         }
-        const handleInputChange = (e) => {
-            const { name, value } = e.target;
-            setWishlistProductItem({
-                ...wishlistProductItem,
-                [name]: value
-            });
+    };
 
-    return ( 
+    // TODO: Add API call to update product
+
+    const handleDelete = () => {
+        console.log('Delete button clicked');
+        // TODO: Add API call to delete product
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setWishlistProductItem({
+            ...wishlistProductItem,
+            [name]: value
+        })
+    };
+
+
+    return (
         <div className='product'>
+            <h1>Product</h1>
             {isEditing ? (
                 <>
                     <p>Product Name: {' '}
-                        <input 
+                        <input
                             type="text"
                             name="productName"
                             value={wishlistProductItem.productName}
@@ -134,14 +142,13 @@ const Product = ({}) => {
             )}
 
             {isEditing ? (
-                <button onClick={handleSave}>Save</button> 
-            ) : ( 
-                <button onClick={handleEdit}>Edit</button> 
+                <button onClick={handleSave}>Save</button>
+            ) : (
+                <button onClick={handleEdit}>Edit</button>
             )}
             <button onClick={handleDelete}>Delete</button>
-        </div> 
+        </div>
     );
 }
-}
- 
+
 export default Product;

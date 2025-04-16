@@ -2,14 +2,25 @@ import React from 'react';
 import ShareIcon from '@mui/icons-material/Share';
 import './WishlistProductItem.css';
 import { useNavigate } from 'react-router-dom';
+import { useWishlist } from '../../hooks/WishlistProvider';
+import { useProduct } from '../../hooks/ProductProvider';
 
 const WishlistProductItem = ({ wishlistProductItem }) => {
 
     console.log(wishlistProductItem);
 
+    const wishlistContext = useWishlist();
+    const productContext = useProduct();
     const navigate = useNavigate();
 
     const handleClick = () => {
+        try {
+            console.log('WishlistProduct clicked:', wishlistProductItem);
+            productContext.setProduct(wishlistProductItem);
+            navigate(`/wishlist/${wishlistContext.wishlistId}/product/${wishlistProductItem.productId}`);
+        } catch (err) {
+            console.error('Error setting product:', err);
+        }
     }
 
     return (

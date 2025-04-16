@@ -13,6 +13,7 @@ import LayoutContainer from "./containers/LayoutContainer";
 import AuthProvider from "./hooks/AuthProvider";
 import PrivateRoute from "./router/PrivateRoute";
 import WishlistProvider from "./hooks/WishlistProvider";
+import ProductProvider from "./hooks/ProductProvider";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -22,25 +23,26 @@ function App() {
       <BrowserRouter>
         <AuthProvider>
           <WishlistProvider>
-            <Routes>
-              <Route path="/" element={<LayoutContainer />}>
-                <Route index element={<LoginContainer />} />
-                <Route path="/register" element={<RegisterContainer />} />
-                <Route element={<PrivateRoute />}>
+            <ProductProvider>
+              <Routes>
+                <Route path="/" element={<LayoutContainer />}>
+                  <Route index element={<LoginContainer />} />
+                  <Route path="/register" element={<RegisterContainer />} />
+                  <Route element={<PrivateRoute />}>
 
-                  <Route path="/wishlists" element={<WishlistListContainer />} />
-                  <Route
-                    path="/wishlist/:wishlistId"
-                    element={<WishlistProductListContainer />}
-                  />
-                  <Route
-                    path="/wishlist/:wishlistId/product/:productId"
-                    element={<WishlistProductContainer />}
-                  />
-
+                    <Route path="/wishlists" element={<WishlistListContainer />} />
+                    <Route
+                      path="/wishlist/:wishlistId"
+                      element={<WishlistProductListContainer />}
+                    />
+                    <Route
+                      path="/wishlist/:wishlistId/product/:productId"
+                      element={<WishlistProductContainer />}
+                    />
+                  </Route>
                 </Route>
-              </Route>
-            </Routes>
+              </Routes>
+            </ProductProvider>
           </WishlistProvider>
         </AuthProvider>
         <h1>This is a h1 tag</h1>

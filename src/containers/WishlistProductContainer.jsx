@@ -5,6 +5,7 @@ import './WishlistProductContainer.css';
 const WishlistProductContainer = () => {
     return ( 
         <div className="wishlist-product-container">
+            <h1>Wishlist Product Container</h1>
             <Product />
         </div>
     );

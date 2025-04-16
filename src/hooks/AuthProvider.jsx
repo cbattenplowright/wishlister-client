@@ -28,7 +28,7 @@ const AuthProvider = ({ children }) => {
       }
 
       const res = await response.json();
-      console.log(res);
+      console.log(`user credentials`, res);
       if (res) {
         setUser(res);
         setCredentials(data.password);
