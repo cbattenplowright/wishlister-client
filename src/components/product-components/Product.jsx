@@ -7,6 +7,13 @@ const Product = ({ product, updateProduct }) => {
   const auth = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [productItem, setProductItem] = useState(product);
+  const options = [
+    { value: "MUST_HAVE", label: "Must Have" },
+    { value: "IMPORTANT", label: "Important" },
+    { value: "NICE_TO_HAVE", label: "Nice To Have" },
+    { value: "DESIRABLE", label: "Desirable" },
+    { value: "NON_URGENT", label: "Non Urgent" },
+  ];
 
   // (
   //     {
@@ -39,6 +46,14 @@ const Product = ({ product, updateProduct }) => {
   };
 
   const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProductItem({
+      ...productItem,
+      [name]: value,
+    });
+  };
+
+  const onOptionChangeHandler = (e) => {
     const { name, value } = e.target;
     setProductItem({
       ...productItem,
@@ -105,13 +120,15 @@ const Product = ({ product, updateProduct }) => {
           <p>
             Priority:{" "}
             <select
-              name="priority"
+              name="prioritySelection"
               value={productItem.prioritySelection}
               onChange={handleInputChange}
             >
-              <option value="HIGH">High</option>
-              <option value="MEDIUM">Medium</option>
-              <option value="LOW">Low</option>
+              {options.map((option, index) => (
+                <option key={index} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
             </select>
           </p>
         </>
