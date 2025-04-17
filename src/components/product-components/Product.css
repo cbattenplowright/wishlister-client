@@ -1,4 +1,114 @@
 .product {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.product img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.product h1 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.product p {
+    margin: 0.8rem 0;
+    color: #34495e;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.product input,
+.product textarea,
+.product select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-top: 0.25rem;
+}
+
+.product textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.product button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 1rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+    transition: background-color 0.2s;
+}
+
+.product button:hover {
+    background-color: #2980b9;
+}
+
+.product button:last-child {
+    background-color: #e74c3c;
+}
+
+.product button:last-child:hover {
+    background-color: #c0392b;
+}
+
+/* Edit mode specific styles */
+.product.editing input,
+.product.editing textarea,
+.product.editing select {
+    background-color: #f8f9fa;
+    border: 2px solid #3498db;
+}
+
+/* Priority colors */
+.product select[name="priority"] option[value="HIGH"] {
+    background-color: #ff7675;
+}
+
+.product select[name="priority"] option[value="MEDIUM"] {
+    background-color: #fdcb6e;
+}
+
+.product select[name="priority"] option[value="LOW"] {
+    background-color: #55efc4;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .product {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .product img {
+        height: 200px;
+    }
+
+    .product button {
+        width: 100%;
+        margin: 0.5rem 0;
+    }
+}
+
+/* .product {
     display: flex;
     flex-direction: column;
     padding: 1rem;
@@ -42,4 +152,4 @@
     justify-content: space-between;
     align-items: center;
     margin-top: auto;
-}
+} */
