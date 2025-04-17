@@ -41,7 +41,7 @@ const Product = ({ product, updateProduct }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProductItem({
-      ...product,
+      ...productItem,
       [name]: value,
     });
   };
