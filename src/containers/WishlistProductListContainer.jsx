@@ -87,25 +87,28 @@ const WishlistProductListContainer = () => {
         }
       )
     }
-    
-    const response = await fetch(
-      // `https://wishlister-h2tf.onrender.com/api/wishlists/${auth.user.userAccountId}`,
-      `http://localhost:8080/api/wishlists/${auth.user.userAccountId}/${wishlistContext.wishlistId}/new`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Basic ${btoa(
-            `${auth.user.email}:${auth.credentials}`
-          )}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: auth.user.userAccountId,
-          wishlistId: wishlistContext.wishlistId,
-          productId: 1,
-        }),
-      }
-    )
+
+    const createWishlistProduct = async () => {
+
+      const response = await fetch(
+        // `https://wishlister-h2tf.onrender.com/api/wishlists/${auth.user.userAccountId}`,
+        `http://localhost:8080/api/wishlists/${auth.user.userAccountId}/${wishlistContext.wishlistId}/new`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Basic ${btoa(
+              `${auth.user.email}:${auth.credentials}`
+            )}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: auth.user.userAccountId,
+            wishlistId: wishlistContext.wishlistId,
+            productId: 1,
+          }),
+        }
+      )
+    }
   }
 
   // const wishlistProductItemsForWishlist1 = wishlistProductItems.filter((wishlistProductItem) => wishlistProductItem.wishlistId === 1);
@@ -116,6 +119,7 @@ const WishlistProductListContainer = () => {
       <WishlistProductList
         // wishlistName={wishlistProductItems.wishlistName}
         wishlistProductItems={wishlistProductItems}
+        createNewWishlistProduct={createNewWishlistProduct}
       />
     </div>
   );
