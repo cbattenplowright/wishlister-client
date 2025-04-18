@@ -44,6 +44,44 @@ const WishlistContainer = () => {
         }
     }
 
+    const createNewWishlist = async (wishlistName) => {
+        try {
+            if (!auth.user){
+                console.error("No user found");
+                return;
+            }
+
+            console.log(`Creating new wishlist for user credentials:, ${auth.user.email}, ${auth.credentials}`);
+            const response = await fetch (
+                // `https://wishlister-h2tf.onrender.com/api/wishlists/${auth.user.userAccountId}`,
+                `http://localhost:8080/api/wishlists/new`,
+                {
+                    method: "POST",
+                    headers: {
+                        Authorization: `Basic ${btoa(`${auth.user.email}:${auth.credentials}`)}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        userId: auth.user.userAccountId,
+                        wishlistName: wishlistName,
+                    })
+                }
+            );
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const res = await response.json();
+            if (res) {
+                wishlistContext.setWishlists([...wishlistContext.wishlists, res]);
+            }
+
+        } catch (err) {
+            console.error('Error creating new wishlist:', err);
+        }
+    }
+
     useEffect(() => {
         if (auth.user) {
             console.log(auth.user);
@@ -54,7 +92,7 @@ const WishlistContainer = () => {
     console.log('wishlists: ', wishlistContext.wishlists);
     return (
         <>
-            <WishlistList wishlistItems={wishlistContext.wishlists}/>
+            <WishlistList wishlistItems={wishlistContext.wishlists} createNewWishlist={createNewWishlist}/>
         </>
     )
 };
