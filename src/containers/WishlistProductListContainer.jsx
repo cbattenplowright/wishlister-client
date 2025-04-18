@@ -55,6 +55,59 @@ const WishlistProductListContainer = () => {
     }
   }, [auth.user]);
 
+  const createNewWishlistProduct = async (newProduct) => {
+    if (!auth.user) {
+      console.error("No user found");
+      return;
+    }
+
+    console.log(
+      `Creating new wishlistProduct for user credentials:, ${auth.user.email}, ${auth.credentials}`
+    );
+
+    // if creating new product and attaching to wishlist need to
+    // create product with API call
+    // then attach to wishlist with API call
+
+    const createProduct = async (newProduct) => {
+      const response = await fetch(
+        // `https://wishlister-h2tf.onrender.com/api/products/new`,
+        `http://localhost:8080/api/products/new`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Basic ${btoa(
+              `${auth.user.email}:${auth.credentials}`
+            )}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            newProduct
+          }),
+        }
+      )
+    }
+    
+    const response = await fetch(
+      // `https://wishlister-h2tf.onrender.com/api/wishlists/${auth.user.userAccountId}`,
+      `http://localhost:8080/api/wishlists/${auth.user.userAccountId}/${wishlistContext.wishlistId}/new`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Basic ${btoa(
+            `${auth.user.email}:${auth.credentials}`
+          )}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: auth.user.userAccountId,
+          wishlistId: wishlistContext.wishlistId,
+          productId: 1,
+        }),
+      }
+    )
+  }
+
   // const wishlistProductItemsForWishlist1 = wishlistProductItems.filter((wishlistProductItem) => wishlistProductItem.wishlistId === 1);
 
   console.log('wishlistName is:', wishlistProductItems?.wishlistName);
