@@ -53,14 +53,6 @@ const Product = ({ product, updateProduct }) => {
     });
   };
 
-  const onOptionChangeHandler = (e) => {
-    const { name, value } = e.target;
-    setProductItem({
-      ...productItem,
-      [name]: value,
-    });
-  };
-
   console.log("Product component rendering with productItem:", productItem);
   console.log("Product name is: ", productItem.productName);
 
