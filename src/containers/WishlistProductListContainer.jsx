@@ -77,33 +77,34 @@ const WishlistProductListContainer = () => {
     return res;
   }
 
-  // const createWishlistProduct = async (newWishlistProduct) => {
+  const createWishlistProduct = async (newWishlistProduct) => {
 
-  //   const response = await fetch(
-  //     // `https://wishlister-h2tf.onrender.com/api/wishlists/${auth.user.userAccountId}`,
-  //     `http://localhost:8080/api/wishlists/${auth.user.userAccountId}/${wishlistContext.wishlistId}/new`,
-  //     {
-  //       method: "POST",
-  //       headers: {
-  //         Authorization: `Basic ${btoa(
-  //           `${auth.user.email}:${auth.credentials}`
-  //         )}`,
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         userId: auth.user.userAccountId,
-  //         wishlistId: wishlistContext.wishlistId,
-  //         newWishlistProduct,
-  //       }),
-  //     }
-  //   )
+    const response = await fetch(
+      // `https://wishlister-h2tf.onrender.com/api/wishlists/${auth.user.userAccountId}`,
+      // `http://localhost:8080/api/wishlists/${auth.user.userAccountId}/${wishlistContext.wishlistId}/new`,
+      `http://localhost:8080/api/wishlist-products/new`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Basic ${btoa(
+            `${auth.user.email}:${auth.credentials}`
+          )}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          productId: newWishlistProduct.productId,
+          wishlistId: wishlistContext.wishlistId,
+          isPurchased: false
+        }),
+      }
+    )
 
-  //   if (!response.ok) {
-  //     throw new Error(`HTTP error! status: ${response.status}`);
-  //   }
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
 
-  //   const res = await response.json();
-  // }
+    const res = await response.json();
+  }
 
   const createNewWishlistProduct = async (newProduct) => {
     if (!auth.user) {
@@ -125,6 +126,8 @@ const WishlistProductListContainer = () => {
     // // setWishlistProductItems(newWishlistProduct);
     // // setWishlistProductItems(mockWishlistProductItems);
     // // setWishlistProductItems(newProduct);
+    const newWishlistProduct = await createWishlistProduct(newProductToCreate);
+    fetchWishlist();
   }
 
   const fetchWishlist = async () => {
