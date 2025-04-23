@@ -9,6 +9,22 @@ const WishlistProductListContainer = () => {
   const wishlistContext = useWishlist();
   const [wishlistProductItems, setWishlistProductItems] = useState(null);
 
+  const prepareUrl = (urlString) => {
+    if (!urlString) return '';
+
+    if (!/^https?:\/\//.test(urlString)) {
+      return `http://${urlString}`;
+    }
+
+    try {
+      const url = new URL(urlString);
+      return url.toString();
+    } catch (error) {
+      console.error("Invalid URL:", urlString);
+      return '';
+    }
+  }
+
   const createProduct = async (newProduct) => {
 
     console.log(`Creating newProduct:`, newProduct)
@@ -27,11 +43,12 @@ const WishlistProductListContainer = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
+          // TODO is it possible to use a map to go through the newProduct object and create a key: value pair for the JSON string
           productName: newProduct.productName,
           userId: auth.user.userAccountId,
           price: Number(newProduct.price),
-          url: newProduct.url,
-          imageUrl: newProduct.imageUrl,
+          url: prepareUrl(newProduct.url),
+          imageUrl: prepareUrl(newProduct.imageUrl),
           priority: newProduct.prioritySelection,
           description: newProduct.description,
           wishlistProducts: []
