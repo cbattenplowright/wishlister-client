@@ -3,9 +3,11 @@ import WishlistProductList from "../components/wishlist-product-list-components/
 import { mockWishlistProductItems } from "../mock-data/MockWishlistProductItems";
 import { useAuth } from "../hooks/AuthProvider";
 import { useWishlist } from "../hooks/WishlistProvider";
+import { useNavigate } from "react-router-dom";
 
 const WishlistProductListContainer = () => {
   const auth = useAuth();
+  const navigate = useNavigate();
   const wishlistContext = useWishlist();
   const [wishlistProductItems, setWishlistProductItems] = useState(null);
 
@@ -169,6 +171,38 @@ const WishlistProductListContainer = () => {
     }
   };
 
+    const deleteWishlist = async () => {
+      try {
+        const response = await fetch (
+        // `https://wishlister-h2tf.onrender.com/api/wishlists/${auth.user.userAccountId}/${wishlistProductItems.wishlistId}`
+          `http://localhost:8080/api/wishlists/${auth.user.userAccountId}/${wishlistProductItems.wishlistId}`,
+          {
+            method: 'DELETE',
+            headers: {
+              Authorization: `Basic ${btoa(
+                `${auth.user.email}:${auth.credentials}`
+              )}`,
+              "Content-Type": "application/json",
+            },
+          }
+        )
+  
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+      } catch (err) {
+        console.error(`Error deleting product:`, err);
+    }
+  }
+
+  const handleDelete = async () => {
+    console.log("Delete button clicked");
+    // TODO: Add API call to delete product
+    await deleteWishlist();
+    navigate(`/wishlists`);
+  };
+
   useEffect(() => {
     if (auth.user) {
       console.log(`WishlistProductListContainer rendering with user, ` + auth.user);
@@ -186,6 +220,7 @@ const WishlistProductListContainer = () => {
         wishlistProductItems={wishlistProductItems}
         createNewWishlistProduct={createNewWishlistProduct}
       />
+      <button onClick={handleDelete}>Delete</button>
     </div>
   );
 };
