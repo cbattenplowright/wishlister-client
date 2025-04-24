@@ -4,12 +4,14 @@ import WishlistList from '../components/wishlist-components/WishlistList';
 import { mockWishlists } from '../mock-data/MockWishlists';
 import { useAuth } from '../hooks/AuthProvider';
 import { useWishlist } from '../hooks/WishlistProvider';
+import { useLocation } from 'react-router-dom';
 
 const WishlistContainer = () => {
 
     const wishlistContext = useWishlist();
     // const [wishlists, setWishlists] = useState(null);
     const auth = useAuth();
+    const location = useLocation();
 
     const fetchWishlists = async () => {
         try {
@@ -87,7 +89,7 @@ const WishlistContainer = () => {
             console.log(auth.user);
             fetchWishlists();
         }
-    }, [auth.user]);
+    }, [auth.user, location.pathname]);
 
     console.log('wishlists: ', wishlistContext.wishlists);
     return (
