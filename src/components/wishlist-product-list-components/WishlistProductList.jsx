@@ -32,7 +32,7 @@ const WishlistProductList = ({ wishlistProductItems, wishlistName, createNewWish
     const triggerNewProductModal = () => {
         console.log("Triggering new product modal");
         handleModalOpen();
-    }
+    } 
 
     return (
         <div className="wishlist-product-list">

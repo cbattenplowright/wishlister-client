@@ -1,10 +1,14 @@
 import react, { useEffect } from "react";
 import { useState } from "react";
 import "./Product.css";
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../hooks/AuthProvider";
+import { useWishlist } from "../../hooks/WishlistProvider";
 
-const Product = ({ product, updateProduct }) => {
+const Product = ({ product, updateProduct, deleteProduct }) => {
   const auth = useAuth();
+  const wishlistContext = useWishlist();
+  const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [productItem, setProductItem] = useState(product);
   const options = [
@@ -40,9 +44,11 @@ const Product = ({ product, updateProduct }) => {
 
   // TODO: Add API call to update product
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     console.log("Delete button clicked");
     // TODO: Add API call to delete product
+    await deleteProduct(productItem.productId);
+    navigate(`/wishlist/${wishlistContext.wishlistId}`);
   };
 
   const handleInputChange = (e) => {
