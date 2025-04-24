@@ -32,8 +32,7 @@ const Navbar = () => {
             <Link to="/">Login</Link>
             <Link to="/register">Register</Link>
             <Link to="/wishlists">Wishlists</Link>
-            <Link to="/wishlist/1">Wishlist 1</Link>
-            <Link to="/wishlist/1/product/1">Product 1</Link>
+            <Link to="/shared-wishlists">Shared Wishlists</Link>
             <LogOutButton />
         </div>
     )

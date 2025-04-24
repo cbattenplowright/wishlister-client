@@ -4,7 +4,7 @@ import './WishlistList.css';
 import { useState } from 'react';
 import NewWishlistModal from './NewWishlistModal';
 
-const WishlistList = ({ wishlistItems, createNewWishlist }) => {
+const WishlistList = ({ wishlistItems, createNewWishlist, isShared = false }) => {
 
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -31,9 +31,19 @@ const WishlistList = ({ wishlistItems, createNewWishlist }) => {
 
     return (
         <div className="wishlist-list">
-            <h1>My Wishlists</h1>
-            <button onClick={triggerNewWishlistModal}>New Wishlist</button>
-            <NewWishlistModal isOpen={modalOpen} handleModalClose={handleModalClose} createNewWishlist={createNewWishlist} />
+            <h1>{isShared ? 'Shared Wishlists' : 'My Wishlists'}</h1>
+            {isShared && (
+                <>
+                    <button onClick={triggerNewWishlistModal}>
+                        New Wishlist
+                    </button>
+                    <NewWishlistModal 
+                        isOpen={modalOpen}
+                        handleModalClose={handleModalClose}
+                        createNewWishlist={createNewWishlist}
+                    />
+                </>
+            )}
             {wishlistItemsComponents}
         </div>
     )

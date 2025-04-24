@@ -14,6 +14,7 @@ import AuthProvider from "./hooks/AuthProvider";
 import PrivateRoute from "./router/PrivateRoute";
 import WishlistProvider from "./hooks/WishlistProvider";
 import ProductProvider from "./hooks/ProductProvider";
+import SharedWishlistListContainer from "./containers/SharedWishlistListContainer";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -38,6 +39,10 @@ function App() {
                     <Route
                       path="/wishlist/:wishlistId/product/:productId"
                       element={<WishlistProductContainer />}
+                    />
+                    <Route
+                      path="/shared-wishlists"
+                      element={<SharedWishlistListContainer />}
                     />
                   </Route>
                 </Route>
