@@ -3,9 +3,11 @@ import WishlistProductItem from "./WishlistProductItem";
 import './WishlistProductList.css';
 import NewProductModal from "./NewProductModal";
 import { useWishlist } from "../../hooks/WishlistProvider";
+import { useAuth } from "../../hooks/AuthProvider";
 
 const WishlistProductList = ({ wishlistProductItems, wishlistName, createNewWishlistProduct }) => {
 
+    const auth = useAuth();
     const [modalOpen, setModalOpen] = useState(false);
 
     console.log('wishlistProductItems: ', wishlistProductItems);
@@ -32,13 +34,23 @@ const WishlistProductList = ({ wishlistProductItems, wishlistName, createNewWish
     const triggerNewProductModal = () => {
         console.log("Triggering new product modal");
         handleModalOpen();
-    } 
+    }
 
     return (
         <div className="wishlist-product-list">
-            <h1>{wishlistProductItems.wishlistName || wishlistName}</h1>
-            <button onClick={triggerNewProductModal}>Add Product</button>
-            <NewProductModal isOpen={modalOpen} handleModalClose={handleModalClose} createNewWishlistProduct={createNewWishlistProduct}/>
+            {auth.user.userAccountId === wishlistProductItems.userId ? (
+                <>
+                    <h1>{wishlistProductItems.wishlistName || wishlistName}</h1>
+                    <button onClick={triggerNewProductModal}>Add Product</button>
+                </>
+            ) : (
+                <h1>{`${wishlistProductItems.wishlistName} shared by ${wishlistProductItems.userId}`}</h1>
+            )}
+            <NewProductModal 
+                isOpen={modalOpen} 
+                handleModalClose={handleModalClose} 
+                createNewWishlistProduct={createNewWishlistProduct} 
+            />
             {wishlistProductItemsComponents}
         </div>
     );
