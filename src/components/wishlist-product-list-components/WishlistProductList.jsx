@@ -44,6 +44,7 @@ const WishlistProductList = ({ wishlistProductItems, wishlistName, createNewWish
                     <button onClick={triggerNewProductModal}>Add Product</button>
                 </>
             ) : (
+                // TODO Add in to sharedWishlist the shared wishlist owners name to display rather than the userId
                 <h1>{`${wishlistProductItems.wishlistName} shared by ${wishlistProductItems.userId}`}</h1>
             )}
             <NewProductModal 
