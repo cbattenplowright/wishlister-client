@@ -28,11 +28,10 @@ const WishlistList = ({ wishlistItems, createNewWishlist, isShared = false }) =>
         // Logic to trigger the new wishlist modal
         // This could be a state update or a function call to open a modal component
     }
-
     return (
         <div className="wishlist-list">
             <h1>{isShared ? 'Shared Wishlists' : 'My Wishlists'}</h1>
-            {isShared && (
+            {!isShared && (
                 <>
                     <button onClick={triggerNewWishlistModal}>
                         New Wishlist

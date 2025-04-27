@@ -43,7 +43,7 @@ const SharedWishlistListContainer = () => {
 
     return ( 
         <>
-            <WishlistList wishlistItems={wishlistContext.wishlists} />ƒ
+            <WishlistList wishlistItems={wishlistContext.wishlists} isShared={true}/>
         </> );
 }
  
