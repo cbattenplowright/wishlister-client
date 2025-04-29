@@ -171,28 +171,28 @@ const WishlistProductListContainer = () => {
     }
   };
 
-    const deleteWishlist = async () => {
-      try {
-        const response = await fetch (
+  const deleteWishlist = async () => {
+    try {
+      const response = await fetch(
         // `https://wishlister-h2tf.onrender.com/api/wishlists/${auth.user.userAccountId}/${wishlistProductItems.wishlistId}`
-          `http://localhost:8080/api/wishlists/${auth.user.userAccountId}/${wishlistProductItems.wishlistId}`,
-          {
-            method: 'DELETE',
-            headers: {
-              Authorization: `Basic ${btoa(
-                `${auth.user.email}:${auth.credentials}`
-              )}`,
-              "Content-Type": "application/json",
-            },
-          }
-        )
-  
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        `http://localhost:8080/api/wishlists/${auth.user.userAccountId}/${wishlistProductItems.wishlistId}`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Basic ${btoa(
+              `${auth.user.email}:${auth.credentials}`
+            )}`,
+            "Content-Type": "application/json",
+          },
         }
-        
-      } catch (err) {
-        console.error(`Error deleting product:`, err);
+      )
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+    } catch (err) {
+      console.error(`Error deleting product:`, err);
     }
   }
 
@@ -219,8 +219,8 @@ const WishlistProductListContainer = () => {
         // wishlistName={wishlistProductItems.wishlistName}
         wishlistProductItems={wishlistProductItems}
         createNewWishlistProduct={createNewWishlistProduct}
+        handleDelete={handleDelete}
       />
-      <button onClick={handleDelete}>Delete</button>
     </div>
   );
 };

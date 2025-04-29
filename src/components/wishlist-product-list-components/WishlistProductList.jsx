@@ -5,7 +5,7 @@ import NewProductModal from "./NewProductModal";
 import { useWishlist } from "../../hooks/WishlistProvider";
 import { useAuth } from "../../hooks/AuthProvider";
 
-const WishlistProductList = ({ wishlistProductItems, wishlistName, createNewWishlistProduct }) => {
+const WishlistProductList = ({ wishlistProductItems, wishlistName, createNewWishlistProduct, handleDelete, isShared = false }) => {
 
     const auth = useAuth();
     const [modalOpen, setModalOpen] = useState(false);
@@ -20,6 +20,8 @@ const WishlistProductList = ({ wishlistProductItems, wishlistName, createNewWish
         return <WishlistProductItem
             key={index}
             wishlistProductItem={product}
+            isShared={isShared}
+            isOwner={auth.user.userAccountId === wishlistProductItems.userId}
         />;
     });
 
@@ -47,12 +49,18 @@ const WishlistProductList = ({ wishlistProductItems, wishlistName, createNewWish
                 // TODO Add in to sharedWishlist the shared wishlist owners name to display rather than the userId
                 <h1>{`${wishlistProductItems.wishlistName} shared by ${wishlistProductItems.userId}`}</h1>
             )}
-            <NewProductModal 
-                isOpen={modalOpen} 
-                handleModalClose={handleModalClose} 
-                createNewWishlistProduct={createNewWishlistProduct} 
+            <NewProductModal
+                isOpen={modalOpen}
+                handleModalClose={handleModalClose}
+                createNewWishlistProduct={createNewWishlistProduct}
             />
             {wishlistProductItemsComponents}
+            {/* Add in context handler of wishlistProvider isShared context */}
+            {auth.user.userAccountId === wishlistProductItems.userId
+                ?
+                <button onClick={handleDelete}>Delete</button>
+                :
+                null}
         </div>
     );
 }

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useWishlist } from '../../hooks/WishlistProvider';
 import { useProduct } from '../../hooks/ProductProvider';
 
-const WishlistProductItem = ({ wishlistProductItem }) => {
+const WishlistProductItem = ({ wishlistProductItem, isShared, isOwner }) => {
 
     console.log(wishlistProductItem);
 
@@ -29,9 +29,12 @@ const WishlistProductItem = ({ wishlistProductItem }) => {
                 <img src="https://placehold.co/100" alt="photo of wishlist product" />
                 <h2>{wishlistProductItem.productName}</h2>
                 <p>£{wishlistProductItem.price}</p>
-                <button>
-                    <ShareIcon />
-                </button>
+                {/* Only show share button if not shared and is owner */}
+                {!isShared && isOwner && (
+                    <button>
+                        <ShareIcon />
+                    </button>
+                )}
             </button>
         </div>
     );
