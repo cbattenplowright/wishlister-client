@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { usePendingShare } from "../hooks/PendingShareProvider";
 
 const SharedWishlistListContainer = () => {
-  const { pendingShares } = usePendingShare();
+  const pendingSharesContext = usePendingShare();
   const wishlistContext = useWishlist();
   const auth = useAuth();
 
@@ -58,11 +58,8 @@ const SharedWishlistListContainer = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const res = await response.json();
-      if (res) {
-        fetchSharedWishlists();
-        fetchPendingShares();
-      }
+      await fetchSharedWishlists();
+      await pendingSharesContext.fetchPendingShares();
     } catch (err) {
       console.error("Error accepting share:", err);
     }
@@ -70,21 +67,24 @@ const SharedWishlistListContainer = () => {
 
   useEffect(() => {
     if (auth.user) {
+      pendingSharesContext.fetchPendingShares();
       fetchSharedWishlists();
     }
   }, [auth.user, location.pathname]);
 
   return (
     <div className="shared-wishlist-list-container">
-      {pendingShares.length > 0 && (
+      {pendingSharesContext.pendingShares.length > 0 && (
         <div className="pending-shares">
           <h2>Pending Shares</h2>
           <ul>
-            {pendingShares.map((share) => (
-              <li key={share.shareToken}>
-                <p>{share.senderUserId} would like to share a wishlist with you!</p>
+            {pendingSharesContext.pendingShares.map((share, index) => (
+              <li key={index}>
+                <p>
+                  {share.senderUserId} would like to share a wishlist with you!
+                </p>
                 <span>{share.wishlistName}</span>
-                <button onClick={() => handleAcceptShare(share.shareToken)}>
+                <button onClick={() => handleAcceptShare(share.token)}>
                   Accept
                 </button>
               </li>
