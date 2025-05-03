@@ -5,6 +5,7 @@ import WishlistList from "../components/wishlist-components/WishlistList";
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { usePendingShare } from "../hooks/PendingShareProvider";
+import "./SharedWishlistListContainer.css";
 
 const SharedWishlistListContainer = () => {
   const pendingSharesContext = usePendingShare();

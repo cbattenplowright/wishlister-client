@@ -1,0 +1,97 @@
+.shared-wishlist-list-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pending-shares {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pending-shares h2 {
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.pending-shares ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pending-shares li {
+  background: white;
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.pending-shares p {
+  margin: 0;
+  color: #4a5568;
+  flex-grow: 1;
+}
+
+.pending-shares span {
+  color: #718096;
+  font-weight: 500;
+}
+
+.pending-shares button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.pending-shares button:hover {
+  background-color: #45a049;
+}
+
+.pending-shares button:active {
+  transform: scale(0.98);
+}
+
+.notification-badge {
+  background-color: #ff4444;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+}
+
+.nav-link {
+  position: relative;
+}
+
+.pending-shares-section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.pending-share-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid #dee2e6;
+}
