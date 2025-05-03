@@ -15,6 +15,7 @@ import PrivateRoute from "./router/PrivateRoute";
 import WishlistProvider from "./hooks/WishlistProvider";
 import ProductProvider from "./hooks/ProductProvider";
 import SharedWishlistListContainer from "./containers/SharedWishlistListContainer";
+import PendingShareProvider from "./hooks/PendingShareProvider";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -23,32 +24,36 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <AuthProvider>
-          <WishlistProvider>
-            <ProductProvider>
-              <Routes>
-                <Route path="/" element={<LayoutContainer />}>
-                  <Route index element={<LoginContainer />} />
-                  <Route path="/register" element={<RegisterContainer />} />
-                  <Route element={<PrivateRoute />}>
-
-                    <Route path="/wishlists" element={<WishlistListContainer />} />
-                    <Route
-                      path="/wishlist/:wishlistId"
-                      element={<WishlistProductListContainer />}
-                    />
-                    <Route
-                      path="/wishlist/:wishlistId/product/:productId"
-                      element={<WishlistProductContainer />}
-                    />
-                    <Route
-                      path="/shared-wishlists"
-                      element={<SharedWishlistListContainer />}
-                    />
+          <PendingShareProvider>
+            <WishlistProvider>
+              <ProductProvider>
+                <Routes>
+                  <Route path="/" element={<LayoutContainer />}>
+                    <Route index element={<LoginContainer />} />
+                    <Route path="/register" element={<RegisterContainer />} />
+                    <Route element={<PrivateRoute />}>
+                      <Route
+                        path="/wishlists"
+                        element={<WishlistListContainer />}
+                      />
+                      <Route
+                        path="/wishlist/:wishlistId"
+                        element={<WishlistProductListContainer />}
+                      />
+                      <Route
+                        path="/wishlist/:wishlistId/product/:productId"
+                        element={<WishlistProductContainer />}
+                      />
+                      <Route
+                        path="/shared-wishlists"
+                        element={<SharedWishlistListContainer />}
+                      />
+                    </Route>
                   </Route>
-                </Route>
-              </Routes>
-            </ProductProvider>
-          </WishlistProvider>
+                </Routes>
+              </ProductProvider>
+            </WishlistProvider>
+          </PendingShareProvider>
         </AuthProvider>
         <h1>This is a h1 tag</h1>
       </BrowserRouter>
