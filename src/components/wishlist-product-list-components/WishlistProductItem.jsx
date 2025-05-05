@@ -9,19 +9,18 @@ import { useState } from "react";
 import { useAuth } from "../../hooks/AuthProvider";
 
 const WishlistProductItem = ({ wishlistProductItem, isShared, isOwner }) => {
-  console.log(wishlistProductItem);
 
   const auth = useAuth();
   const wishlistContext = useWishlist();
   const productContext = useProduct();
   const navigate = useNavigate();
-  const [checked, setChecked] = useState(wishlistProductItem.isPurchased);
+  const [checked, setChecked] = useState(wishlistProductItem.purchased);
 
   const label = {
     inputProps: { "aria-label": "switch for marking if product is purchased" },
   };
 
-  const fetchPurchase = async (wishlistProductItem) => {
+  const fetchPurchase = async () => {
     try {
       const response = await fetch(
         // `https://wishlister-h2tf.onrender.com/api/wishlists/${wishlistContext.wishlistId}/products/${wishlistProductItem.productId}/purchase`,
@@ -37,17 +36,19 @@ const WishlistProductItem = ({ wishlistProductItem, isShared, isOwner }) => {
           body: JSON.stringify({
             wishlistId: wishlistContext.wishlistId,
             productId: wishlistProductItem.productId,
-            isPurchased: checked,
+            isPurchased: !checked,
           }),
         }
       );
 
       if (!response.ok) {
+        setChecked(!checked);
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       const res = await response.json();
       console.log("Purchase updated:", res);
+      setChecked(res.purchased);
     } catch (err) {
       console.error("Error fetching purchase:", err);
     }
@@ -66,13 +67,16 @@ const WishlistProductItem = ({ wishlistProductItem, isShared, isOwner }) => {
   };
 
   const handlePurchaseToggle = async (e) => {
-    e.preventDefault();
     try {
-      await fetchPurchase(wishlistProductItem);
+      await fetchPurchase();
     } catch (err) {
       console.error("Error fetching purchase:", err);
     }
   };
+
+  useEffect(() => {
+    setChecked(wishlistProductItem.purchased);
+  }, [wishlistProductItem.purchased]);
 
   return (
     <div className="wishlist-product-item">
