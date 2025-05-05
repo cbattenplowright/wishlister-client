@@ -1,5 +1,6 @@
 import React from 'react';
 import ShareIcon from '@mui/icons-material/Share';
+import Switch from '@mui/material/Switch';
 import './WishlistProductItem.css';
 import { useNavigate } from 'react-router-dom';
 import { useWishlist } from '../../hooks/WishlistProvider';
@@ -12,6 +13,8 @@ const WishlistProductItem = ({ wishlistProductItem, isShared, isOwner }) => {
     const wishlistContext = useWishlist();
     const productContext = useProduct();
     const navigate = useNavigate();
+
+    const label = { inputProps: { 'aria-label': 'Size switch demo' } };
 
     const handleClick = () => {
         try {
@@ -35,6 +38,9 @@ const WishlistProductItem = ({ wishlistProductItem, isShared, isOwner }) => {
                         <ShareIcon />
                     </button>
                 )}
+                <div onClick={(e) => e.stopPropagation()}>
+                    <Switch {...label} defaultChecked />
+                </div>
             </button>
         </div>
     );
