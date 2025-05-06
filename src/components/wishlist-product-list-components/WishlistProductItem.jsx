@@ -1,12 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import ShareIcon from "@mui/icons-material/Share";
 import Switch from "@mui/material/Switch";
 import "./WishlistProductItem.css";
+import { fetchPurchase } from "../../fetchRequests/fetchPurchase";
 import { useNavigate } from "react-router-dom";
 import { useWishlist } from "../../hooks/WishlistProvider";
 import { useProduct } from "../../hooks/ProductProvider";
-import { useState } from "react";
 import { useAuth } from "../../hooks/AuthProvider";
+
 
 const WishlistProductItem = ({ wishlistProductItem, isShared, isOwner }) => {
 
@@ -20,39 +21,39 @@ const WishlistProductItem = ({ wishlistProductItem, isShared, isOwner }) => {
     inputProps: { "aria-label": "switch for marking if product is purchased" },
   };
 
-  const fetchPurchase = async () => {
-    try {
-      const response = await fetch(
-        // `https://wishlister-h2tf.onrender.com/api/wishlists/${wishlistContext.wishlistId}/products/${wishlistProductItem.productId}/purchase`,
-        `http://localhost:8080/api/wishlist-products/${auth.user.userAccountId}/${wishlistProductItem.productId}`,
-        {
-          method: "PUT",
-          headers: {
-            Authorization: `Basic ${btoa(
-              `${auth.user.email}:${auth.credentials}`
-            )}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            wishlistId: wishlistContext.wishlistId,
-            productId: wishlistProductItem.productId,
-            isPurchased: !checked,
-          }),
-        }
-      );
+//   const fetchPurchase = async () => {
+//     try {
+//       const response = await fetch(
+//         // `https://wishlister-h2tf.onrender.com/api/wishlist-products/${auth.user.userAccountId}/${wishlistProductItem.wishlistProductId}`,
+//         `http://localhost:8080/api/wishlist-products/${auth.user.userAccountId}/${wishlistProductItem.wishlistProductId}`,
+//         {
+//           method: "PUT",
+//           headers: {
+//             Authorization: `Basic ${btoa(
+//               `${auth.user.email}:${auth.credentials}`
+//             )}`,
+//             "Content-Type": "application/json",
+//           },
+//           body: JSON.stringify({
+//             wishlistId: wishlistContext.wishlistId,
+//             productId: wishlistProductItem.productId,
+//             isPurchased: !checked,
+//           }),
+//         }
+//       );
 
-      if (!response.ok) {
-        setChecked(!checked);
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
+//       if (!response.ok) {
+//         setChecked(!checked);
+//         throw new Error(`HTTP error! status: ${response.status}`);
+//       }
 
-      const res = await response.json();
-      console.log("Purchase updated:", res);
-      setChecked(res.purchased);
-    } catch (err) {
-      console.error("Error fetching purchase:", err);
-    }
-  };
+//       const res = await response.json();
+//       console.log("Purchase updated:", res);
+//       setChecked(res.purchased);
+//     } catch (err) {
+//       console.error("Error fetching purchase:", err);
+//     }
+//   };
 
   const handleClick = () => {
     try {
@@ -68,7 +69,16 @@ const WishlistProductItem = ({ wishlistProductItem, isShared, isOwner }) => {
 
   const handlePurchaseToggle = async (e) => {
     try {
-      await fetchPurchase();
+        await fetchPurchase(
+            auth.user.userAccountId,
+            wishlistProductItem.wishlistProductId,
+            wishlistProductItem.productId,
+            wishlistContext.wishlistId,
+            checked,
+            auth.user.email,
+            auth.credentials,
+            setChecked
+        );
     } catch (err) {
       console.error("Error fetching purchase:", err);
     }
@@ -91,6 +101,7 @@ const WishlistProductItem = ({ wishlistProductItem, isShared, isOwner }) => {
           </button>
         )}
         {!isOwner && (
+            // Refactor to be isPurchasedComponent as will use the component in the product.jsx file too
           <div
             className="is-purchased-switch"
             onClick={(e) => e.stopPropagation()}
