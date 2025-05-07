@@ -73,11 +73,11 @@ const WishlistProductContainer = () => {
 
   const deleteProduct = async (productId) => {
     try {
-      const response = await fetch (
-      // `https://wishlister-h2tf.onrender.com/api/products/${auth.user.userAccountId}/${productContext.product.productId}`
+      const response = await fetch(
+        // `https://wishlister-h2tf.onrender.com/api/products/${auth.user.userAccountId}/${productContext.product.productId}`
         `http://localhost:8080/api/products/${auth.user.userAccountId}/${productId}`,
         {
-          method: 'DELETE',
+          method: "DELETE",
           headers: {
             Authorization: `Basic ${btoa(
               `${auth.user.email}:${auth.credentials}`
@@ -85,32 +85,35 @@ const WishlistProductContainer = () => {
             "Content-Type": "application/json",
           },
         }
-      )
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
       await fetchProduct();
-      
     } catch (err) {
       console.error(`Error deleting product:`, err);
-  }
-}
+    }
+  };
 
-useEffect(() => {
-  if (auth.user) {
-    console.log(`WishlistProductContainer rendering with user, ` + auth.user);
-    fetchProduct();
-  }
-}, [auth.user]);
+  useEffect(() => {
+    if (auth.user) {
+      console.log(`WishlistProductContainer rendering with user, ` + auth.user);
+      fetchProduct();
+    }
+  }, [auth.user, location.pathname]);
 
-return (
-  <div className="wishlist-product-container">
-    <h1>Wishlist Product Container</h1>
-    <Product product={productContext.product} updateProduct={updateProduct} deleteProduct={deleteProduct}/>
-  </div>
-);
+  return (
+    <div className="wishlist-product-container">
+      <h1>Wishlist Product Container</h1>
+      <Product
+        product={productContext.product}
+        updateProduct={updateProduct}
+        deleteProduct={deleteProduct}
+      />
+    </div>
+  );
 };
 
 export default WishlistProductContainer;

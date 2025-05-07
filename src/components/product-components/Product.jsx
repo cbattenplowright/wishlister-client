@@ -4,6 +4,8 @@ import "./Product.css";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/AuthProvider";
 import { useWishlist } from "../../hooks/WishlistProvider";
+import IsPurchasedToggle from "../IsPurchasedToggle";
+import { useLocation } from "react-router-dom";
 
 const Product = ({ product, updateProduct, deleteProduct }) => {
   const auth = useAuth();
@@ -11,6 +13,7 @@ const Product = ({ product, updateProduct, deleteProduct }) => {
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [productItem, setProductItem] = useState(product);
+  const location = useLocation();
   const options = [
     { value: "MUST_HAVE", label: "Must Have" },
     { value: "IMPORTANT", label: "Important" },
@@ -151,6 +154,14 @@ const Product = ({ product, updateProduct, deleteProduct }) => {
           )}
           <button onClick={handleDelete}>Delete</button>
         </div>
+      )}
+
+      {productItem.userId !== auth.user.userAccountId && (
+        <IsPurchasedToggle
+          auth={auth}
+          wishlistProductItem={productItem}
+          wishlistContext={wishlistContext}
+        />
       )}
     </div>
   );
