@@ -15,45 +15,6 @@ const WishlistProductItem = ({ wishlistProductItem, isShared, isOwner }) => {
     const wishlistContext = useWishlist();
     const productContext = useProduct();
     const navigate = useNavigate();
-    //   const [checked, setChecked] = useState(wishlistProductItem.purchased);
-
-    //   const label = {
-    //     inputProps: { "aria-label": "switch for marking if product is purchased" },
-    //   };
-
-    //   const fetchPurchase = async () => {
-    //     try {
-    //       const response = await fetch(
-    //         // `https://wishlister-h2tf.onrender.com/api/wishlist-products/${auth.user.userAccountId}/${wishlistProductItem.wishlistProductId}`,
-    //         `http://localhost:8080/api/wishlist-products/${auth.user.userAccountId}/${wishlistProductItem.wishlistProductId}`,
-    //         {
-    //           method: "PUT",
-    //           headers: {
-    //             Authorization: `Basic ${btoa(
-    //               `${auth.user.email}:${auth.credentials}`
-    //             )}`,
-    //             "Content-Type": "application/json",
-    //           },
-    //           body: JSON.stringify({
-    //             wishlistId: wishlistContext.wishlistId,
-    //             productId: wishlistProductItem.productId,
-    //             isPurchased: !checked,
-    //           }),
-    //         }
-    //       );
-
-    //       if (!response.ok) {
-    //         setChecked(!checked);
-    //         throw new Error(`HTTP error! status: ${response.status}`);
-    //       }
-
-    //       const res = await response.json();
-    //       console.log("Purchase updated:", res);
-    //       setChecked(res.purchased);
-    //     } catch (err) {
-    //       console.error("Error fetching purchase:", err);
-    //     }
-    //   };
 
     const handleClick = () => {
         try {
@@ -66,27 +27,6 @@ const WishlistProductItem = ({ wishlistProductItem, isShared, isOwner }) => {
             console.error("Error setting product:", err);
         }
     };
-
-    //   const handlePurchaseToggle = async (e) => {
-    //     try {
-    //         await fetchPurchase(
-    //             auth.user.userAccountId,
-    //             wishlistProductItem.wishlistProductId,
-    //             wishlistProductItem.productId,
-    //             wishlistContext.wishlistId,
-    //             checked,
-    //             auth.user.email,
-    //             auth.credentials,
-    //             setChecked
-    //         );
-    //     } catch (err) {
-    //       console.error("Error fetching purchase:", err);
-    //     }
-    //   };
-
-    //   useEffect(() => {
-    //     setChecked(wishlistProductItem.purchased);
-    //   }, [wishlistProductItem.purchased]);
 
     return (
         <div className="wishlist-product-item">
@@ -107,17 +47,6 @@ const WishlistProductItem = ({ wishlistProductItem, isShared, isOwner }) => {
                         wishlistProductItem={wishlistProductItem}
                         wishlistContext={wishlistContext}
                     />
-                    //   <div
-                    //     className="is-purchased-switch"
-                    //     onClick={(e) => e.stopPropagation()}
-                    //   >
-                    //     <p>Purchased?</p>
-                    //     <Switch
-                    //       {...label}
-                    //       checked={checked}
-                    //       onChange={handlePurchaseToggle}
-                    //     />
-                    //   </div>
                 )}
             </button>
         </div>

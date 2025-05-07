@@ -1,7 +1,7 @@
 import react, { useEffect } from "react";
 import { useState } from "react";
 import "./Product.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/AuthProvider";
 import { useWishlist } from "../../hooks/WishlistProvider";
 
@@ -142,12 +142,16 @@ const Product = ({ product, updateProduct, deleteProduct }) => {
         </>
       )}
 
-      {isEditing ? (
-        <button onClick={handleSave}>Save</button>
-      ) : (
-        <button onClick={handleEdit}>Edit</button>
+      {productItem.userId === auth.user.userAccountId && (
+        <div className="product-actions">
+          {isEditing ? (
+            <button onClick={handleSave}>Save</button>
+          ) : (
+            <button onClick={handleEdit}>Edit</button>
+          )}
+          <button onClick={handleDelete}>Delete</button>
+        </div>
       )}
-      <button onClick={handleDelete}>Delete</button>
     </div>
   );
 };
