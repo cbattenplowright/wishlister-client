@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import ShareIcon from "@mui/icons-material/Share";
 import Switch from "@mui/material/Switch";
 import "./WishlistProductItem.css";
-import { fetchPurchase } from "../../fetchRequests/fetchPurchase";
 import { useNavigate } from "react-router-dom";
 import { useWishlist } from "../../hooks/WishlistProvider";
 import { useProduct } from "../../hooks/ProductProvider";
