@@ -19,7 +19,9 @@ const WishlistProductItem = ({ wishlistProductItem, isShared, isOwner }) => {
     const handleClick = () => {
         try {
             console.log("WishlistProduct clicked:", wishlistProductItem);
-            productContext.setProduct(wishlistProductItem);
+            productContext.setProduct({
+                ...wishlistProductItem,
+                wishlistProductId: wishlistProductItem.wishlistProductId});
             navigate(
                 `/wishlist/${wishlistContext.wishlistId}/product/${wishlistProductItem.productId}`
             );

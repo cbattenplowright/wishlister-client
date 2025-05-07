@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Switch from '@mui/material/Switch';
 
-const IsPurchasedToggle = ({ wishlistProductItem, auth, wishlistContext }) => {
+const IsPurchasedToggle = ({ wishlistProductItem, auth, wishlistContext, wishlistProductId }) => {
 
     const [checked, setChecked] = useState(wishlistProductItem.purchased);
 

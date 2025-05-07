@@ -3,10 +3,12 @@ import Product from "../components/product-components/Product";
 import "./WishlistProductContainer.css";
 import { useProduct } from "../hooks/ProductProvider";
 import { useAuth } from "../hooks/AuthProvider";
+import { useWishlist } from "../hooks/WishlistProvider";
 
 const WishlistProductContainer = () => {
   const auth = useAuth();
   const productContext = useProduct();
+  const wishlistContext = useWishlist();
 
   const fetchProduct = async () => {
     try {
@@ -14,7 +16,7 @@ const WishlistProductContainer = () => {
         `Fetching product for productId: ${productContext.product.productId}`
       );
 
-      const response = await fetch(
+      const productResponse = await fetch(
         // `https://wishlister-h2tf.onrender.com/api/products/${auth.user.userAccountId}/${productContext.product.productId}`,
         `http://localhost:8080/api/products/${auth.user.userAccountId}/${productContext.product.productId}`,
         {
@@ -28,16 +30,39 @@ const WishlistProductContainer = () => {
         }
       );
 
-      if (!response.ok) {
+      if (!productResponse.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const res = await response.json();
+      const productData = await productResponse.json();
 
-      if (res) {
-        console.log("Product has been set to: " + res);
-        productContext.setProduct(res);
+      const wishlistProductResponse = await fetch(
+        `http://localhost:8080/api/wishlist-products/${auth.user.userAccountId}/${productData.productId}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Basic ${btoa(
+              `${auth.user.email}:${auth.credentials}`
+            )}`,
+          },
+        }
+      );
+
+      if (!wishlistProductResponse.ok) {
+        throw new Error(
+          `HTTP error! status: ${wishlistProductResponse.status}`
+        );
       }
+
+      const wishlistProductData = await wishlistProductResponse.json();
+
+      const combinedData = {
+        ...productData,
+        wishlistProductId: wishlistProductData.wishlistProductId,
+        purchased: wishlistProductData.purchased,
+      };
+
+      productContext.setProduct(combinedData);
     } catch (err) {
       console.error("Error fetching product:", err);
     }
