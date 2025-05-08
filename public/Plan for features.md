@@ -42,3 +42,6 @@ Endpoint: PATCH /api/products/{productId}
 Payload: isPurchased status
 Authentication required
 Proper error handling
+
+# Share Wishlist via email function
+
